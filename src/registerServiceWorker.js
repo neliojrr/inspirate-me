@@ -10,15 +10,14 @@
 
 export default function register() {
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      console.log("trying to register the service worker");
-      navigator.serviceWorker.register('').then(function registration() {
-        // Registration was successful
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      }, function(err) {
-        // Registration failed
-        console.log('ServiceWorker registration failed: ', err);
-      });
-    });
+    navigator.serviceWorker.register('/sw.js')
+      .then(function(registration) {
+        // Successful registration
+        console.log("It was registered. Scope is: " + registration.scope);
+      })
+      .catch(function(err) {
+        // Failed registration
+        console.log("Service worker was not registered: Error: " + err);
+      })
   }
 }
