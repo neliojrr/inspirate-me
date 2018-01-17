@@ -1,8 +1,6 @@
 var CACHE_NAME = 'my-pwa-cache-v11';
 var urlsToCache = [
   '/',
-  '/build.js',
-  '/static/js/bundle.js'
 ];
 
 self.addEventListener('install', function(event) {
@@ -11,19 +9,7 @@ self.addEventListener('install', function(event) {
     caches.open(CACHE_NAME)
       .then(function(cache) {
         cache.addAll(urlsToCache);
-        /*return Promise.all([
-          getQuotes(),
-          cache
-        ]);*/
       })
-    /*.then(function(response) {
-        const quotes = response[0] || [];
-        const cache = response[1] || {};
-        cache.put("quotes", quotes);
-      })
-      .catch(function(err) {
-        console.log("Error: " + err);
-      })*/
   );
 });
 
