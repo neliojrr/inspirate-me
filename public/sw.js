@@ -1,6 +1,10 @@
-var CACHE_NAME = 'my-pwa-cache-v11';
+var CACHE_NAME = 'my-pwa-cache-v13';
 var urlsToCache = [
   '/',
+  '/index.html',
+  '/static/js/bundle.js',
+  '/icon.png',
+  '/manifest.json'
 ];
 
 self.addEventListener('install', function(event) {
@@ -19,6 +23,13 @@ self.addEventListener('fetch', function(event) {
   if(requestURL == "https://cors-anywhere.herokuapp.com/https://favqs.com/api/quotes") {
     console.log("trying to fetch");
     event.respondWith(quoteResponse(event.request));
+  }
+  else {
+    event.respondWith(
+      caches.match(event.request).then(function(response) {
+        return response || fetch(event.request);
+      })
+    );
   }
 });
 
