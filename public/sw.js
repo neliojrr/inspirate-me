@@ -2,7 +2,8 @@ var CACHE_NAME = 'my-pwa-cache-v13';
 var urlsToCache = [
   '/',
   '/index.html',
-  '/static/js/bundle.js',
+  '/static/js/main*.js',
+  '/static/css/main*.css',
   '/icon.png',
   '/manifest.json'
 ];
